@@ -95,4 +95,139 @@ VALUES (1251, "Ram Kumar", "Dilbagh Nagar", "M", "Jalandhar", 144002),
        alter table account rename to account_details;
        select * from account_details;
        
+       -- DML(Data manipulation language)
+       -- insert into
+       
+       CREATE TABLE Customer (
+	   id integer PRIMARY KEY,
+       cname varchar(225),
+       Address varchar(225),
+       Gender char(2),
+       City varchar(225),
+       Pincode integer
+        );
+        
+        select * from Customer;
+        Truncate table Customer;
+        TRUNCATE TABLE Student;
+        drop table Customer;
+        
+        INSERT INTO Customer(id, cname, Address, Gender, City, Pincode)
+        VALUES (1267, "Shyam Kumar", "Panipat", "M", "Panipat", "141022");
+        
+        INSERT INTO Customer(id, cname)
+        values(121, "Bob");
+        
+        -- Update
+        UPDATE Customer SET Address = "Mumbai", Gender = "M" WHERE id = 121;
+        
+        -- Update multiply rows
+        SET SQL_SAFE_UPDATES = 0;
+        UPDATE Customer SET Pincode = 110000;
+        UPDATE Customer SET Pincode = 110000 + 1;
+        
+        -- DELETE
+        delete from Customer where id = 121;
+        delete from Customer;
+        
+        -- on delete cascade
+        
+        CREATE TABLE Customer (
+       id integer PRIMARY KEY,
+       cname varchar(225),
+       Address varchar(225),
+       Gender char(2),
+       City varchar(225),
+       Pincode integer
+       );
+       
+       INSERT INTO Customer(id, cname, Address, Gender, City, Pincode)
+        VALUES (1, "Ram Kumar3", "Dilbagh Nagar", "M", "Jalandhar", Null);
+        select * from Customer;
+        
+       CREATE TABLE Order_details (
+       Order_id integer,
+       deleivery_date DATE,
+       cust_id INT,
+       FOREIGN KEY(cust_id) references Customer(id) ON DELETE CASCADE
+       );
+       
+       INSERT INTO Order_details
+       VALUES (3, "2019-03-11", 1);
+       
+       INSERT INTO Order_details
+       VALUES (4, "2019-03-12", 1);
+       
+       select * from Order_details;
+       
+       DELETE FROM Customer WHERE id = 1;
+       
+       -- ON DELETE SET NULL
+       
+         CREATE TABLE Customer (
+       id integer PRIMARY KEY,
+       cname varchar(225),
+       Address varchar(225),
+       Gender char(2),
+       City varchar(225),
+       Pincode integer
+       );
+       
+       INSERT INTO Customer(id, cname, Address, Gender, City, Pincode)
+        VALUES (1, "Ram Kumar3", "Dilbagh Nagar", "M", "Jalandhar", Null);
+        
+        select * from Customer;
+        
+       CREATE TABLE Order_details (
+       Order_id integer,
+       deleivery_date DATE,
+       cust_id INT,
+       FOREIGN KEY(cust_id) references Customer(id) ON DELETE SET NULL
+       );
+       
+       INSERT INTO Order_details
+       VALUES (3, "2019-03-11", 1);
+       
+       INSERT INTO Order_details
+       VALUES (4, "2019-03-12", 1);
+       
+       select * from Order_details;
+       
+       DELETE FROM Customer WHERE id = 1; 
+       
+       -- Replace 
+       
+       CREATE TABLE Customer (
+       id integer PRIMARY KEY,
+       cname varchar(225),
+       Address varchar(225),
+       Gender char(2),
+       City varchar(225),
+       Pincode integer
+       );
+       
+       INSERT INTO Customer(id, cname, Address, Gender, City, Pincode)
+        VALUES (1, "Ram Kumar3", "Dilbagh Nagar", "M", "Jalandhar", Null);
+        
+         INSERT INTO Customer(id, cname, Address, Gender, City, Pincode)
+        VALUES (2, "Raman Kumar", "Shyam Nagar", "M", "Panipat", 132457);
+        
+        REPLACE INTO Customer(id, cname)
+        VALUES (3, "Aman Singh");
+        
+        REPLACE INTO Customer(id, cname, Address)
+        VALUES(3, "Amit Singh", "Sonipat");
+        select * from Customer;
+        
+        -- replace by second method
+        replace into Customer set id  = 3, cname = "Ajay Kumar", Address = "Hisar";
+        
+        
+        
+        
+       
+       
+       
+
+       
       
